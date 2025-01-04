@@ -71,7 +71,7 @@ const MyCampaign = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center text-orange-600">
+      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-800">
         My Campaigns
       </h2>
       {mycampaigns.length > 0 ? (
@@ -93,11 +93,12 @@ const MyCampaign = () => {
                   <td className="border px-4 py-2">{idx + 1}</td>
                   <td className="border px-4 py-2">{campaign.title}</td>
                   <td className="border px-4 py-2">{campaign.type}</td>
-                  <td className="border px-4 py-2">${campaign.minDonation}</td>
+                  <td className="border px-4 py-2">${campaign.minimumDonation}</td>
                   <td className="border px-4 py-2">{campaign.deadline}</td>
                   <td className="border px-4 py-2 space-x-2">
                     <Link to={`/updatecampaign/${campaign._id}`}>
-                      <button className="btn btn-sm bg-orange-600 hover:bg-green-300 hover:text-white">
+                      <button className="btn btn-sm bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900
+  text-white px-6 py-2 rounded shadow hover:text-white">
                         Update
                       </button>
                     </Link>

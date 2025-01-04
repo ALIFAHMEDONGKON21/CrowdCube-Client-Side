@@ -9,6 +9,7 @@ import Home from "./pages/HaderPage/Home";
 import AddCampaign from "../PrivtivComponets/AddCampaign";
 import MyCampaigns from "../PrivtivComponets/MyCampaigns.JSX";
 import UpdateCampaign from "../UpdatepagefrommyCampaine/UpdateCampaign";
+import MyDonation from "./pages/MyDonation";
 
 
 
@@ -38,7 +39,15 @@ const router = createBrowserRouter([
                     
         {
             path:'/updatecampaign/:id',
-            element:<UpdateCampaign></UpdateCampaign>
+            element:<UpdateCampaign></UpdateCampaign>,
+            loader: ({ params }) =>
+                fetch(
+                    `http://localhost:5000/campaigns/${params.id}`
+                ),
+        },
+        {
+        path:'/my-donations',
+        element:<MyDonation></MyDonation>
         },
         {
             path:'login',
@@ -58,3 +67,4 @@ const router = createBrowserRouter([
 ])
 
 export default router;
+

@@ -1,139 +1,202 @@
-import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+
+import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Router/pages/Context";
-
 const UpdateCampaign = () => {
-    const {user}=useContext(AuthContext)
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [campaign, setCampaign] = useState({
-    title: "",
-    type: "",
-    description: "",
-    minDonation: "",
-    deadline: "",
-    imageURL: "",
-  });
+      const { user } = useContext(AuthContext);
+  const data = useLoaderData();
+  console.log(data);
+  const [formData, setFormData] = useState(data);
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const imageURL = form.imageURL.value;
+    const campaignTitle = form.campaignTitle.value;
+    const campaignType = form.campaignType.value;
+    const description = form.description.value;
+    const minDonation = form.minDonation.value;
+    const deadline = form.deadline.value;
+    const userEmail = form.userEmail.value;
+    const userName = form.userName.value;
+    const singleUpdateCampaigns = {
+      imageURL,
+      campaignTitle,
+      campaignType,
+      description,
+      minDonation,
+      deadline,
+      userEmail,
+      userName,
+    };
 
-  // Fetch campaign details to populate the form
-  useEffect(() => {
-    fetch(`http://localhost:5000/mycampaign?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setCampaign(data))
-      .catch((error) =>
-        Swal.fire("Error", "Failed to load campaign details.", "error")
-      );
-  }, [id]);
 
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    console.log("Updating campaign with ID:", id);
-    console.log("Updated campaign data:", updatedCampaign);
-  
-    fetch(`http://localhost:5000/mycampaign/${id}`, {
+    fetch(`http://localhost:5000/mycampaign/${data._id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
-      body: JSON.stringify(updatedCampaign),
+      body: JSON.stringify(singleUpdateCampaigns),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === "Campaign updated successfully!") {
-          Swal.fire("Success", data.message, "success");
-          navigate("/mycampaigns");
-        } else {
-          Swal.fire("Error", data.message, "error");
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "User Updated SucessFully",
+            icon: "success",
+            confirmButtonText: "Update",
+          });
+          setFormData(singleUpdateCampaigns);
         }
-      })
-      .catch((error) => {
-        console.error("Error updating campaign:", error);
-        Swal.fire("Error", "Failed to update campaign.", "error");
       });
   };
-  
+    return (
+        <div>
+            <div>
+       <div className="container mx-auto mt-10 max-w-lg p-6 bg-white rounded-lg shadow-lg">
+         <h2 className="text-2xl font-bold text-gray-800 mb-6">
+           Update Campaign
+         </h2>
 
-  return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-center text-orange-600 mb-4">
-        Update Campaign
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">Title</label>
+         <form onSubmit={handleUpdateSubmit}>
+           {/* Image URL  */}
+           <div className="form-control mb-4">
+             <label className="label font-semibold">
+               <span className="label-text">Image URL</span>
+             </label>
           <input
-            type="text"
-            value={campaign.title}
-            onChange={(e) => setCampaign({ ...campaign, title: e.target.value })}
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Type</label>
-          <input
-            type="text"
-            value={campaign.type}
-            onChange={(e) => setCampaign({ ...campaign, type: e.target.value })}
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Description</label>
-          <textarea
-            value={campaign.description}
-            onChange={(e) =>
-              setCampaign({ ...campaign, description: e.target.value })
-            }
-            className="textarea textarea-bordered w-full"
-            required
-          ></textarea>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Minimum Donation</label>
-          <input
-            type="number"
-            value={campaign.minDonation}
-            onChange={(e) =>
-              setCampaign({ ...campaign, minDonation: e.target.value })
-            }
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Deadline</label>
-          <input
-            type="date"
-            value={campaign.deadline}
-            onChange={(e) =>
-              setCampaign({ ...campaign, deadline: e.target.value })
-            }
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Image URL</label>
-          <input
-            type="text"
-            value={campaign.imageURL}
-            onChange={(e) =>
-              setCampaign({ ...campaign, imageURL: e.target.value })
-            }
-            className="input input-bordered w-full"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary w-full">
-          Update Campaign
-        </button>
-      </form>
+              type="url"
+              name="imageURL"
+              defaultValue={formData.imageURL}
+              placeholder="Enter image URL"
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          {/* Campaign Title */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">Campaign Title</span>
+            </label>
+            <input
+              type="text"
+              name="campaignTitle"
+              defaultValue={formData.campaignTitle}
+              placeholder="Enter campaign title"
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          {/* Campaign Type  */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">Campaign Type</span>
+            </label>
+            <select
+              name="campaignType"
+              className="select select-bordered w-full"
+              defaultValue={formData.campaignType || ""}
+              required
+            >
+              <option disabled selected>
+                Select type
+              </option>
+              <option>Personal Issue</option>
+              <option>Startup</option>
+              <option>Business</option>
+              <option>Creative Ideas</option>
+            </select>
+          </div>
+
+          {/* Description  */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">Description</span>
+            </label>
+            <textarea
+              name="description"
+              placeholder="Write a brief description..."
+              className="textarea textarea-bordered w-full"
+              defaultValue={formData.description}
+              required
+            ></textarea>
+          </div>
+
+          {/* Minimum Donation Amount */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">Minimum Donation Amount</span>
+            </label>
+            <input
+              type="number"
+              name="minDonation"
+              placeholder="Enter amount"
+              className="input input-bordered w-full"
+              defaultValue={formData.minDonation}
+              required
+            />
+          </div>
+
+          {/* Deadline  */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">Deadline</span>
+            </label>
+            <input
+              type="date"
+              name="deadline"
+              className="input input-bordered w-full"
+              defaultValue={formData.deadline}
+              required
+            />
+          </div>
+
+          {/* User Email (Read Only)  */}
+          <div className="form-control mb-4">
+            <label className="label font-semibold">
+              <span className="label-text">User Email</span>
+            </label>
+            <input
+              type="email"
+              name="userEmail"
+              className="input input-bordered w-full  bg-gray-200 "
+              defaultValue={user?.email || ""}
+              readOnly
+            />
+          </div>
+
+          {/* User Name (Read Only) */}
+          <div className="form-control mb-6">
+            <label className="label font-semibold">
+              <span className="label-text">User Name</span>
+            </label>
+            <input
+              type="text"
+              name="userName"
+              className="input input-bordered w-full bg-gray-200 "
+              defaultValue={user?.displayName || ""}
+              readOnly
+            />
+          </div>
+
+          {/* Add Button  */}
+          <div className="form-control">
+            <button
+              type="submit"
+              className="btn bg-orange-600 text-white w-full"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  );
+        </div>
+    );
 };
 
 export default UpdateCampaign;
