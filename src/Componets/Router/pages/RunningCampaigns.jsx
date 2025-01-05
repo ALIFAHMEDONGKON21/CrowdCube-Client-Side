@@ -60,7 +60,7 @@ const RunningCampaigns = () => {
               </p>
               <button
                 className="bg-blue-600 text-white mt-4 px-4 py-2 w-full rounded-md font-medium hover:bg-blue-700 transition-all duration-200"
-                onClick={() => navigate(`/campaign/${campaign.id}`)}
+                onClick={() => navigate(`/campaignDetails/${campaign._id}`)}
               >
                 See More
               </button>

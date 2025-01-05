@@ -10,6 +10,7 @@ import AddCampaign from "../PrivtivComponets/AddCampaign";
 import MyCampaigns from "../PrivtivComponets/MyCampaigns.JSX";
 import UpdateCampaign from "../UpdatepagefrommyCampaine/UpdateCampaign";
 import MyDonation from "./pages/MyDonation";
+import CampaignDetails from "./pages/CampaignDetails";
 
 
 
@@ -40,14 +41,32 @@ const router = createBrowserRouter([
         {
             path:'/updatecampaign/:id',
             element:<UpdateCampaign></UpdateCampaign>,
-            loader: ({ params }) =>
-                fetch(
-                    `http://localhost:5000/campaigns/${params.id}`
-                ),
+            loader:({params})=>
+                fetch(`http://localhost:5000/campaigns/${params.id}`)
+            
         },
         {
         path:'/my-donations',
         element:<MyDonation></MyDonation>
+        },
+
+        {
+            path: "/campaignDetails/:id",
+            element: (
+              
+                <CampaignDetails></CampaignDetails>
+              
+            ),
+            loader: async ({ params }) => {
+                console.log("Loading campaign with ID:", params.id); // Debugging
+                const response = await fetch(`http://localhost:5000/campaigns/${params.id}`);
+              
+                if (!response.ok) {
+                  throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+              
+                return response.json();
+              },
         },
         {
             path:'login',
