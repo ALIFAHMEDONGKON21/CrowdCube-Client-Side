@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "./Context";
+import { AuthContext } from "../Router/pages/Context";
 
 const MyDonation = () => {
   const [donations, setDonations] = useState([]);
@@ -7,7 +7,7 @@ const MyDonation = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/mycampaign/${user.email}`)
+      fetch(`http://localhost:5000/donation?email=${user.email}`) // Corrected endpoint
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch donations");
@@ -20,6 +20,7 @@ const MyDonation = () => {
         .catch((err) => console.error("Error fetching donations:", err));
     }
   }, [user?.email]);
+  
 
   return (
     <div className="container mx-auto px-4 lg:px-8 mt-8 mb-7">

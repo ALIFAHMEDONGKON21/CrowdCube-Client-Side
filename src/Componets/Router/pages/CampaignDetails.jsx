@@ -6,15 +6,42 @@ import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "./Context";
 
+
+// deadline
+// : 
+// "2025-01-24"
+// description
+// : 
+// "ddasdfdsfds"
+// image
+// : 
+// "https://i.ibb.co.com/qNJm30h/man-vacation-holding-little-globe-blue-140725-94083.jpg"
+// minimumDonation
+// : 
+// "222"
+// title
+// : 
+// "dfdsadfdfdd"
+// type
+// : 
+// "personal issue"
+// userEmail
+// : 
+// "mdalifahmed114510@gmail.com"
+// userName
+// : 
+// ""
+
 const CampaignDetails = () => {
   const { user } = useContext(AuthContext);
   const singleCampaign = useLoaderData();
+  console.log(singleCampaign)
   const {
-    imageURL,
-    campaignTitle,
-    campaignType,
+    image,
+    Title,
+    Type,
     description,
-    minDonation,
+    minimumDonation,
     deadline,
   } = singleCampaign;
 
@@ -31,18 +58,17 @@ const CampaignDetails = () => {
     }
 
     const donationData = {
-      campaignTitle,
-      campaignType,
-      userName: user.displayName,
+      Title,
+      Type,
+      userName: user.name,
       userEmail: user.email,
-      minDonation,
+      minimumDonation,
       deadline,
       description,
-      imageURL,
+      image,
     };
 
-    
-    fetch("https://localhost:5000/donatedetails", {
+    fetch("http://localhost:5000/donattion", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,24 +89,24 @@ const CampaignDetails = () => {
         {/* Campaign Image */}
         <figure className="w-full">
           <img
-            src={imageURL}
-            alt={campaignTitle}
+            src={image}
+            alt={Title}
             className="w-full h-full object-cover"
           />
         </figure>
 
         {/* Campaign Details */}
         <div className="card-body">
-          <h2 className="card-title text-3xl font-bold mb-4">{campaignTitle}</h2>
+          <h2 className="card-title text-3xl font-bold mb-4">{Title}</h2>
 
           <p className="text-lg font-medium text-gray-700 mb-2">
-            <span className="font-bold text-orange-600">Type:</span> {campaignType}
+            <span className="font-bold text-orange-600">Type:</span> {Type}
           </p>
 
           <p className="text-gray-600 text-justify mb-4">{description}</p>
 
           <p className="text-lg font-medium text-gray-700">
-            <span className="font-bold text-orange-600">Minimum Donation:</span> ${minDonation}
+            <span className="font-bold text-orange-600">Minimum Donation:</span> ${minimumDonation}
           </p>
 
           <p className="text-lg font-medium text-gray-700">
