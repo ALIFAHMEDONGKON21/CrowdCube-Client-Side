@@ -26,21 +26,21 @@ const FeaturedCampaigns = () => {
   ]);
 
   return (
-    <div className="bg-gray-50 py-10 px-6">
-      <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-8">
+    <div className="bg-gray-50 py-10 px-6  dark:bg-gray-800">
+      <h2 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100 text-center mb-8">
         Featured Campaigns
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 dark:text-gray-100  ">
         {featuredCampaigns.map((campaign) => (
-          <div key={campaign.id} className="bg-white shadow-md rounded-lg p-6">
+          <div key={campaign.id} className="bg-white shadow-md rounded-lg p-6 dark:text-gray-100 dark:bg-gray-900">
             <img
               src={campaign.image}
               alt={campaign.title}
               className="w-full h-40 object-cover rounded"
             />
             <h3 className="text-xl font-semibold mt-4">{campaign.title}</h3>
-            <p className="text-gray-600 mt-2">{campaign.description.slice(0, 100)}...</p>
-            <p className="text-gray-500 mt-2">
+            <p className="text-gray-600 dark:text-gray-100 mt-2">{campaign.description.slice(0, 100)}...</p>
+            <p className="text-gray-500 dark:text-gray-100 mt-2">
               <strong>Deadline:</strong> {new Date(campaign.deadline).toLocaleDateString()}
             </p>
           </div>

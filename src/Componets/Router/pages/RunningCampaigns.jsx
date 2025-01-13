@@ -33,7 +33,7 @@ const RunningCampaigns = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-10 px-6">
+    <div className="bg-gray-50 py-10 px-6  dark:bg-gray-800">
       <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-10">
         All Campaigns
       </h2>
@@ -50,23 +50,23 @@ const RunningCampaigns = () => {
                 alt={campaign.title}
                 className="w-full h-48 object-cover"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-800 truncate">
+              <div className="p-6  dark:bg-gray-900 dark:text-gray-100">
+                <h3 className="text-2xl dark:text-gray-100 font-semibold text-gray-800 truncate">
                   {campaign.title}
                 </h3>
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 dark:text-gray-100 mt-2">
                   {campaign.description.slice(0, 80)}...
                 </p>
-                <p className="text-gray-500 mt-2">
+                <p className="text-gray-500 dark:text-gray-100 mt-2">
                   <strong>Type:</strong> {campaign.type}
                 </p>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 dark:text-gray-100 mt-1">
                   <strong>Minimum Donation:</strong> ${campaign.minimumDonation}
                 </p>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 dark:text-gray-100 mt-1">
                   <strong>Total Donations:</strong> ${campaign.totalDonations || 0}
                 </p>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 dark:text-gray-100 mt-1">
                   <strong>Deadline:</strong>{" "}
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </p>
