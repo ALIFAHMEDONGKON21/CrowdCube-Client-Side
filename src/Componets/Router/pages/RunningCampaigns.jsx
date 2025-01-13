@@ -71,7 +71,7 @@ const RunningCampaigns = () => {
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </p>
                 <button
-                  className="bg-blue-600 text-white mt-4 px-4 py-2 w-full rounded-md font-medium hover:bg-blue-700 transition-all duration-200"
+                  className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white px-6 py-2 rounded shadow mt-4  w-full font-medium hover:bg-blue-700 transition-all duration-200"
                   onClick={() => navigate(`/campaignDetails/${campaign._id}`)}
                 >
                   See More

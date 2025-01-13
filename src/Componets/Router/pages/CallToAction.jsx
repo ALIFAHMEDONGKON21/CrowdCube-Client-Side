@@ -10,7 +10,7 @@ const CallToAction = () => {
           <button className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded shadow-lg text-white">
             Create a Campaign
           </button>
-          <button className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded shadow-lg text-white">
+          <button className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white px-6 py-2 rounded shadow ">
             Support a Cause
           </button>
         </div>

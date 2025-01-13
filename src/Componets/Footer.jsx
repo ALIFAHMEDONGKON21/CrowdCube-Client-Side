@@ -4,7 +4,7 @@ import Logo from '../assets/10assimentwebsite logo.png'; // Your website logo
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900  text-white py-8">
       <div className="container mx-auto px-4">
         {/* Footer Top: Logo and Info */}
         <div className="flex flex-col md:flex-row items-center justify-between">
