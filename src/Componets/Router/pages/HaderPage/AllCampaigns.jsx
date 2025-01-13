@@ -1,8 +1,9 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AllCampaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc'); // Sorting order state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,9 +13,31 @@ const AllCampaigns = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  // Sorting function
+  const sortCampaignsByDonation = () => {
+    const sortedCampaigns = [...campaigns].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.minimumDonation - b.minimumDonation;
+      } else {
+        return b.minimumDonation - a.minimumDonation;
+      }
+    });
+    setCampaigns(sortedCampaigns);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sorting order
+  };
+
   return (
     <div className="max-w-7xl mx-auto p-4">
+      
+      <div className="flex justify-between items-center mb-4">
       <h1 className="text-2xl font-bold mb-4">All Campaigns</h1>
+        <button
+          onClick={sortCampaignsByDonation}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Sort by Minimum Donation ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
+        </button>
+      </div>
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -45,7 +68,7 @@ const AllCampaigns = () => {
               <td className="border border-gray-300 px-4 py-2">
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                  onClick={() => navigate(`/campaigns/${campaign._id}`)}
+                  onClick={() => navigate(`/campaignDetails/${campaign._id}`)}
                 >
                   See More
                 </button>

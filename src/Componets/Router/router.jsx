@@ -11,6 +11,7 @@ import MyCampaigns from "../PrivtivComponets/MyCampaigns.JSX";
 import UpdateCampaign from "../UpdatepagefrommyCampaine/UpdateCampaign";
 import MyDonation from "../PrivtivComponets/MyDonation";
 import CampaignDetails from "./pages/CampaignDetails";
+import PrivateRoute from "../Privite Router/PrivateRouter";
 
 
 
@@ -56,8 +57,9 @@ const router = createBrowserRouter([
         {
             path: "/campaignDetails/:id",
             element: 
-              
-                <CampaignDetails></CampaignDetails>,
+                <PrivateRoute>
+                <CampaignDetails></CampaignDetails>
+                </PrivateRoute>,
                 loader:({params})=>
                     fetch(`http://localhost:5000/campaigns/${params.id}`)
                 

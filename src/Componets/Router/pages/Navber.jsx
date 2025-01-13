@@ -2,10 +2,14 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Context"; // Import your AuthContext
 import { toast } from "react-hot-toast";
-import { FaSignOutAlt } from "react-icons/fa"; // Optional icon for logout
+import { FaMoon, FaSignOutAlt, FaSun } from "react-icons/fa"; // Optional icon for logout
 import logo from "../../../assets/10assimentwebsite logo.png";
+import { useTheme } from "../../ThemeSwitcher/ThemeProvider";
+
+
 
 const Navbar = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const { user, logout } = useContext(AuthContext); // Access logout function from context
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false); // State to control mobile menu
@@ -75,7 +79,18 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Authentication Section */}
+        
+        <button
+          onClick={toggleTheme}
+          className="btn btn-circle btn-outline dark:bg-gray-800"
+        >
+          {isDarkMode ? (
+            <FaSun className="text-yellow-500 text-xl" />
+          ) : (
+            <FaMoon className="text-gray-800 text-xl" />
+          )}
+        </button>
+        
         <div className="flex items-center space-x-4">
           {!user ? (
             <>

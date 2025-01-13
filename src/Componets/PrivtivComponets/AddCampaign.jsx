@@ -129,7 +129,7 @@ const AddCampaign = () => {
         <input
           type="email"
           name="userEmail"
-          value={formData.userEmail}
+          value={user.email}
           readOnly
           className="w-full mb-4 p-2 border rounded bg-gray-100"
         />
@@ -138,7 +138,7 @@ const AddCampaign = () => {
         <input
           type="text"
           name="userName"
-          value={formData.userName}
+          value={user.displayName}
           readOnly
           className="w-full mb-4 p-2 border rounded bg-gray-100"
         />

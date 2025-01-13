@@ -1,6 +1,7 @@
 import Banner from "../Banner";
+import CallToAction from "../CallToAction.JSX";
 import  RunningCampaigns from '../RunningCampaigns';
-import Testimonials from "../Testimonials";
+
 import FeaturedCampaigns from "./FeaturedCampaigns ";
 
 const Home = () => {
@@ -10,7 +11,7 @@ const Home = () => {
             <RunningCampaigns></RunningCampaigns>
           
             <FeaturedCampaigns></FeaturedCampaigns>
-            <Testimonials></Testimonials>
+            <CallToAction></CallToAction>
             
         </div>
     );

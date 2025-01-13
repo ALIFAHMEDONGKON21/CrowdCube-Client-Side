@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter"; // Importing Typewriter
 
 const Banner = () => {
   const images = [
@@ -8,39 +9,55 @@ const Banner = () => {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    if (isHovered) return; // Pause on hover
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [images.length]);
+    }, 2000);// Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length, isHovered]);
 
   return (
-    <div className=" text-black py-16 px-8 flex items-center justify-between">
+    <div className="text-black py-16 px-8 flex flex-wrap items-center justify-between">
       {/* Left Section */}
       <div className="max-w-lg">
-        <h1 className="text-4xl font-bold">Welcome to Crowdcube<br />— Where Dream</h1>
+        <h1 className="text-4xl font-bold">
+          <Typewriter
+            words={["Welcome to Crowdcube", "Where Dreams Come Alive"]}
+            loop={0}
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </h1>
         <p className="mt-4 text-black-300">
           We seek out world changers and difference makers around the globe and equip them to fulfill their unique purpose.
         </p>
         <div className="mt-6 flex space-x-4">
-          <button className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900
-  text-white px-6 py-2 rounded shadow">
+          <button className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white px-6 py-2 rounded shadow">
             Add Your Campaign
           </button>
-          <button className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900
-  text-white px-6 py-2 rounded shadow">
+          <button className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white px-6 py-2 rounded shadow">
             Browse Campaigns
           </button>
         </div>
       </div>
 
       {/* Right Section */}
-      <div className="w-1/2">
-        <img 
+      <div
+        className="w-full md:w-1/2"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img
           src={images[currentImageIndex]}
-          alt="Banner"
+          alt={`Banner Image ${currentImageIndex + 1}`}
           className="rounded shadow-lg transition-opacity duration-500 object-cover w-full h-64"
         />
       </div>
