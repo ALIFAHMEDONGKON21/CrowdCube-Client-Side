@@ -13,14 +13,15 @@ const FeaturedCampaigns = () => {
       id: 2,
       title: "Help Fight Cancer",
       description: "Support cancer research and give hope to millions of people.",
-      image: "https://i.ibb.co.com/HYBk6DQ/diverse-people-refugee-camps-23-2151561513.jpg",
+     
+      image: "https://i.ibb.co.com/XSYp4Ws/world-cancer-day-with-people-hugging-23-2151064696.jpg",
       deadline: "2025-10-15",
     },
     {
       id: 3,
       title: "Build Homes for Homeless",
       description: "A campaign to build homes for people who have lost everything.",
-      image: "https://i.ibb.co.com/XSYp4Ws/world-cancer-day-with-people-hugging-23-2151064696.jpg",
+      image: "https://i.ibb.co.com/HYBk6DQ/diverse-people-refugee-camps-23-2151561513.jpg",
       deadline: "2025-09-01",
     },
   ]);

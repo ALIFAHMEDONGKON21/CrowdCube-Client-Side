@@ -12,9 +12,11 @@ const MainLayout = () => {
         <div >
            <ThemeProvider>
             <Navber></Navber>
+            <div className=" dark:bg-gray-800">
             <div className="min-h-[calc(100vh-420px)] container mx-auto ">
              <Outlet></Outlet>
              
+            </div>
             </div>
             <Footer></Footer>
             </ThemeProvider>

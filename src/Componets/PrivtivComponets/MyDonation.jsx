@@ -27,7 +27,7 @@ const MyDonation = () => {
   }, [user?.email]);
 
   return (
-    <div className="container mx-auto px-4 lg:px-8 mt-8 mb-7">
+    <div className="container mx-auto px-4 lg:px-8 ">
       <h2 className="text-3xl font-bold text-center mb-6">
         My Donated <span className="text-indigo-800">Campaigns</span> List
       </h2>
