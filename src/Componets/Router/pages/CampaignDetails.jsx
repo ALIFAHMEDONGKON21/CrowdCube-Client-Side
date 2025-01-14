@@ -68,7 +68,7 @@ const CampaignDetails = () => {
       image,
     };
 
-    fetch("http://localhost:5000/donattion", {
+    fetch("https://crowduble-server.vercel.app/donattion", {
       method: "POST",
       headers: {
         "content-type": "application/json",

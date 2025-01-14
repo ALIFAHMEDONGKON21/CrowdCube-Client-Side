@@ -47,7 +47,7 @@ const UpdateCampaign = () => {
       image,
       description
     }
-    fetch(`http://localhost:5000/campaigns/${id}`, {
+    fetch(`https://crowduble-server.vercel.app/campaigns/${id}`, {
       method: "PATCH",
       headers:{
         "content-Type":"application/json"

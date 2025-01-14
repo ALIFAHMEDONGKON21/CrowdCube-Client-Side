@@ -9,7 +9,7 @@ const MyDonation = () => {
   useEffect(() => {
     if (user?.email) {
       setLoading(true); // Start loading
-      fetch(`http://localhost:5000/donation?email=${user.email}`)
+      fetch(`https://crowduble-server.vercel.app/donation?email=${user.email}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch donations");

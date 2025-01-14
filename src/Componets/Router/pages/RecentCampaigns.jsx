@@ -7,7 +7,7 @@ const RecentCampaigns = () => {
     useEffect(() => {
       const fetchCampaigns = async () => {
         try {
-          const response = await fetch("http://localhost:5000/campaigns"); // Replace with your API endpoint
+          const response = await fetch("https://crowduble-server.vercel.app/campaigns"); // Replace with your API endpoint
           const data = await response.json();
   
           // Sort by creation date (assuming campaigns have a 'createdAt' field)

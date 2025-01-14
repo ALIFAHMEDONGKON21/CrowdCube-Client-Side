@@ -24,7 +24,7 @@ const AddCampaign = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/campaigns", {
+      const response = await fetch("https://crowduble-server.vercel.app/campaigns", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../../assets/MainLayout";
+import MainLayout from "../MainLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Login from "../../Login";
 import Register from "../../Register";
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
             path:'/updatecampaign/:id',
             element:<UpdateCampaign></UpdateCampaign>,
             loader:({params})=>
-                fetch(`http://localhost:5000/campaigns/${params.id}`)
+                fetch(`https://crowduble-server.vercel.app/campaigns/${params.id}`)
             
         },
         {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
                 <CampaignDetails></CampaignDetails>
                 </PrivateRoute>,
                 loader:({params})=>
-                    fetch(`http://localhost:5000/campaigns/${params.id}`)
+                    fetch(`https://crowduble-server.vercel.app/campaigns/${params.id}`)
                 
          },
         

@@ -7,7 +7,7 @@
 //   const navigate = useNavigate();
 
 //   useEffect(() => {
-//     fetch('http://localhost:5000/campaigns')
+//     fetch('https://crowduble-server.vercel.app/campaigns')
 //       .then((res) => res.json())
 //       .then((data) => setCampaigns(data))
 //       .catch((err) => console.error(err));
@@ -94,7 +94,7 @@ const AllCampaigns = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/campaigns')
+    fetch('https://crowduble-server.vercel.app/campaigns')
       .then((res) => res.json())
       .then((data) => setCampaigns(data))
       .catch((err) => console.error(err));

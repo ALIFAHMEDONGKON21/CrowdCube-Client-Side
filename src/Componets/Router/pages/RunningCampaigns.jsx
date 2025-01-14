@@ -10,7 +10,7 @@ const RunningCampaigns = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await fetch("http://localhost:5000/homecampaign");
+        const response = await fetch("https://crowduble-server.vercel.app/homecampaign");
 
         if (!response.ok) {
           throw new Error("Failed to fetch campaigns");

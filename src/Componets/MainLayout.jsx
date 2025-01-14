@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../Componets/Footer";
-import Navber from "../Componets/Router/pages/Navber";
-import { ThemeProvider } from "../Componets/ThemeSwitcher/ThemeProvider";
+import Footer from "./Footer";
+import Navber from "./Router/pages/Navber";
+import { ThemeProvider } from "./ThemeSwitcher/ThemeProvider";
 
 
 

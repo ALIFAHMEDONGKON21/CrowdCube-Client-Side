@@ -6,7 +6,7 @@ const TopContributors = () => {
     useEffect(() => {
       const fetchContributors = async () => {
         try {
-          const response = await fetch("http://localhost:5000/contributors"); // Replace with your API endpoint
+          const response = await fetch("https://crowduble-server.vercel.app/contributors"); // Replace with your API endpoint
           const data = await response.json();
           setContributors(data.slice(0, 5)); // Show top 5 contributors
         } catch (error) {
