@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Router/pages/Context";
- // Import AuthContext to access user data
 
 const AddCampaign = () => {
-  const { user } = useContext(AuthContext); // Get logged-in user info
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     image: "",
     title: "",
-    type: "personal issue", // Default value for the dropdown
+    type: "personal issue",
     description: "",
     minimumDonation: "",
     deadline: "",
@@ -55,7 +54,8 @@ const AddCampaign = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded">
+    <div className=" dark:bg-gray-800 dark:text-gray-100">
+      <div className="max-w-lg mx-auto  p-6 bg-white dark:bg-gray-800 dark:text-gray-100 shadow-lg rounded">
       <h2 className="text-2xl font-bold mb-6">Add New Campaign</h2>
       <form onSubmit={handleSubmit}>
         <label className="block mb-2 font-medium">Image/Thumbnail (URL)</label>
@@ -64,7 +64,7 @@ const AddCampaign = () => {
           name="image"
           value={formData.image}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
           placeholder="Enter image URL"
           required
         />
@@ -75,7 +75,7 @@ const AddCampaign = () => {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
           placeholder="Enter campaign title"
           required
         />
@@ -85,7 +85,7 @@ const AddCampaign = () => {
           name="type"
           value={formData.type}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
         >
           <option value="personal issue">Personal Issue</option>
           <option value="startup">Startup</option>
@@ -98,7 +98,7 @@ const AddCampaign = () => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
           placeholder="Enter campaign description"
           rows="4"
           required
@@ -110,7 +110,7 @@ const AddCampaign = () => {
           name="minimumDonation"
           value={formData.minimumDonation}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
           placeholder="Enter minimum donation amount"
           required
         />
@@ -121,7 +121,7 @@ const AddCampaign = () => {
           name="deadline"
           value={formData.deadline}
           onChange={handleChange}
-          className="w-full mb-4 p-2 border rounded"
+          className="w-full mb-4 p-2 border rounded dark:border-gray-600 dark:bg-gray-700"
           required
         />
 
@@ -131,7 +131,7 @@ const AddCampaign = () => {
           name="userEmail"
           value={user.email}
           readOnly
-          className="w-full mb-4 p-2 border rounded bg-gray-100"
+          className="w-full mb-4 p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-300"
         />
 
         <label className="block mb-2 font-medium">User Name</label>
@@ -140,16 +140,18 @@ const AddCampaign = () => {
           name="userName"
           value={user.displayName}
           readOnly
-          className="w-full mb-4 p-2 border rounded bg-gray-100"
+          className="w-full mb-4 p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-300"
         />
 
         <button
           type="submit"
-          className="bg-blue-500 text-white w-full py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white w-full py-2 px-4 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
         >
           Add
         </button>
       </form>
+    </div>
+
     </div>
   );
 };
