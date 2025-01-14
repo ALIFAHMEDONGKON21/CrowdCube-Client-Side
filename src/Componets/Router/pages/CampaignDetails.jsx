@@ -100,17 +100,17 @@ const CampaignDetails = () => {
           <h2 className="card-title text-3xl font-bold mb-4">{Title}</h2>
 
           <p className="text-lg font-medium text-gray-700 mb-2">
-            <span className="font-bold text-orange-600">Type:</span> {Type}
+            <span className="font-bold text-blue-600">Type:</span> {Type}
           </p>
 
           <p className="text-gray-600 text-justify mb-4">{description}</p>
 
           <p className="text-lg font-medium text-gray-700">
-            <span className="font-bold text-orange-600">Minimum Donation:</span> ${minimumDonation}
+            <span className="font-bold text-blue-600">Minimum Donation:</span> ${minimumDonation}
           </p>
 
           <p className="text-lg font-medium text-gray-700">
-            <span className="font-bold text-orange-600">Deadline:</span>{" "}
+            <span className="font-bold text-blue-600">Deadline:</span>{" "}
             {new Date(deadline).toDateString()}
           </p>
 
@@ -118,7 +118,7 @@ const CampaignDetails = () => {
           <div className="card-actions mt-6 justify-center">
             <button
               onClick={handleDonate}
-              className="btn btn-success hover:bg-orange-600 hover:text-white flex items-center gap-2 px-6 text-xl"
+              className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white p-2 rounded-lg flex items-center gap-2 px-6 text-xl"
             >
               <FaDonate className="text-2xl" /> Donate Now
             </button>

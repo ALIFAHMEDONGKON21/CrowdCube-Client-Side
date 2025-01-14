@@ -34,7 +34,7 @@ const RunningCampaigns = () => {
 
   return (
     <div className="bg-gray-50 py-10 px-6  dark:bg-gray-800">
-      <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-10">
+      <h2 className="text-4xl font-extrabold dark:text-gray-100  text-center mb-10">
         All Campaigns
       </h2>
 
