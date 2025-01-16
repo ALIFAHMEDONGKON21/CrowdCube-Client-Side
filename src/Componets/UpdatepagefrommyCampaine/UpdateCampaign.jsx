@@ -4,26 +4,6 @@ import { AuthContext } from "../Router/pages/Context";
 import Swal from "sweetalert2";
 
 
-// deadline
-// : 
-// "2025-01-24"
-// description
-// : 
-// "dfdafadsfd"
-// image
-// : 
-// "https://i.ibb.co.com/HhQh2XT/young-bearded-man-with-world-globe-1194-178781.jpg"
-// minimumDonation
-// : 
-// "20"
-// title
-// : 
-// "dfadfadfdfd"
-// type
-// : 
-// "personal issue"
-
-
 const UpdateCampaign = () => {
   const {id}=useParams();
  
@@ -55,7 +35,8 @@ const UpdateCampaign = () => {
       body:JSON.stringify(data)
     })
     .then((res)=>res.json())
-     .then((result)=>{
+    .then(data=>console.log(data) )
+    .then((all)=>{
       Swal.fire('data update')
      })
   };

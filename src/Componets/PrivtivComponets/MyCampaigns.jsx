@@ -5,11 +5,15 @@ import { AuthContext } from "../Router/pages/Context";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
   const [mycampaigns, setMycampaigns] = useState([]);
 
+  // Fetch campaigns
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/mycampaign?email=${user.email}`)
+      setLoading(true); // Start loading
+
+      fetch(`https://crowduble-server.vercel.app/mycampaign?email=${user.email}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch campaigns.");
@@ -17,6 +21,7 @@ const MyCampaign = () => {
           return res.json();
         })
         .then((data) => {
+          console.log("Fetched campaigns:", data); // Debugging log
           setMycampaigns(data);
         })
         .catch((error) => {
@@ -26,6 +31,7 @@ const MyCampaign = () => {
     }
   }, [user?.email]);
 
+  // Handle delete
   const handleDelete = (id) => {
     if (!user?.email) {
       Swal.fire("Error", "You must be logged in to delete a campaign.", "error");
@@ -42,8 +48,12 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/mycampaign/${id}`, {
+        console.log("Deleting campaign ID:", id); // Debugging log
+        fetch(`https://crowduble-server.vercel.app/mycampaign/${id}`, {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
           .then((res) => {
             if (!res.ok) {
@@ -52,6 +62,7 @@ const MyCampaign = () => {
             return res.json();
           })
           .then((data) => {
+            console.log("Delete response:", data); // Debugging log
             if (data.message === "Campaign deleted successfully!") {
               Swal.fire("Deleted!", "Your campaign has been deleted.", "success");
               setMycampaigns((prev) =>
@@ -73,8 +84,11 @@ const MyCampaign = () => {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4 text-center text-indigo-800">
         My Campaigns
+        
+        
       </h2>
-      {mycampaigns.length > 0 ? (
+      {
+       mycampaigns.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table w-full text-center border-collapse border border-gray-300">
             <thead>
@@ -89,7 +103,7 @@ const MyCampaign = () => {
             </thead>
             <tbody>
               {mycampaigns.map((campaign, idx) => (
-                <tr key={campaign._id} className="text-center hover">
+                <tr key={campaign._id} className="text-center dark:text-white">
                   <td className="border px-4 py-2">{idx + 1}</td>
                   <td className="border px-4 py-2">{campaign.title}</td>
                   <td className="border px-4 py-2">{campaign.type}</td>
@@ -97,8 +111,7 @@ const MyCampaign = () => {
                   <td className="border px-4 py-2">{campaign.deadline}</td>
                   <td className="border px-4 py-2 space-x-2">
                     <Link to={`/updatecampaign/${campaign._id}`}>
-                      <button className="btn btn-sm bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900
-  text-white px-6 py-2 rounded shadow hover:text-white">
+                      <button className="btn btn-sm bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white px-6 py-2 rounded shadow hover:text-white">
                         Update
                       </button>
                     </Link>
@@ -114,11 +127,15 @@ const MyCampaign = () => {
             </tbody>
           </table>
         </div>
-      ) : (
-        <p className="text-gray-600 text-center text-2xl">
-          No campaigns added yet.
-        </p>
-      )}
+      ) : 
+        (
+          // Loader Section
+          <div className="flex items-center justify-center h-64">
+              <div className="w-12 h-12 border-4 border-dashed rounded-full animate-spin border-black-500"></div>
+            </div>
+        )
+      
+      }
     </div>
   );
 };
