@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
-import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "./Componets/Router/pages/Context";
+import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
@@ -34,12 +33,12 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="max-w-md mx-auto ">
       <Toaster />
-      <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
+      <h1 className="text-2xl font-semibold text-center mb-6 text-black">Login</h1>
       <form onSubmit={handleEmailLogin} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium">Email</label>
+          <label className="block text-sm text-black  font-medium">Email</label>
           <input
             type="email"
             value={email}
@@ -49,7 +48,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Password</label>
+          <label className="block text-black text-sm font-medium">Password</label>
           <input
             type="password"
             value={password}
@@ -68,9 +67,10 @@ const Login = () => {
       <div className="text-center my-4">OR</div>
       <button
         onClick={handleGoogleLogin}
-        className="w-full py-2 flex items-center justify-center bg-red-500 text-white rounded-md"
+        className="w-full py-2 flex items-center justify-center  text-black  border-red-200 rounded-md"
       >
-        <FaGoogle className="mr-2" />
+        
+        <FcGoogle className=" mr-2 " />
         Login with Google
       </button>
       <p className="mt-4 text-center">

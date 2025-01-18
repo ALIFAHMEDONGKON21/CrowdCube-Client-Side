@@ -66,7 +66,7 @@ const Register = () => {
   };
 
   return (
-    <div className="w-[90%] md:w-[90%] lg:w-[100%] mx-auto">
+    <div className="w-[90%] md:w-[90%] lg:w-[100%] mx-auto dark:bg-gray-800">
       <div className="flex justify-center items-center rounded-2xl bg-base-200 p-7 mb-5">
         <div className="card bg-base-100 w-full p-3 lg:w-full max-w-lg shrink-0 rounded-none lg:p-10">
           <h2 className="text-2xl font-semibold text-center">

@@ -29,7 +29,9 @@ const RunningCampaigns = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-gray-500">Loading campaigns...</p>;
+    return  <div className="flex items-center justify-center h-64">
+    <div className="w-12 h-12 border-4 border-dashed rounded-full animate-spin border-black-500"></div>
+  </div>;
   }
 
   return (

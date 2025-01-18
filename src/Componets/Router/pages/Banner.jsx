@@ -195,7 +195,7 @@ const Banner = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative h-64 sm:h-72 md:h-96 lg:h-[28rem] overflow-hidden rounded-lg shadow-lg">
+          <div className="relative h-64 sm:h-72 md:h-96 lg:h-[20rem] overflow-hidden rounded-lg shadow-lg">
             <img
               src={images[currentImageIndex]}
               alt={`Banner Image ${currentImageIndex + 1}`}

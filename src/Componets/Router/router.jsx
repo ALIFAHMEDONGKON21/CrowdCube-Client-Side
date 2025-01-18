@@ -60,9 +60,24 @@ const router = createBrowserRouter([
                 <PrivateRoute>
                 <CampaignDetails></CampaignDetails>
                 </PrivateRoute>,
-                loader:({params})=>
-                    fetch(`https://crowduble-server.vercel.app/campaigns/${params.id}`)
-                
+                // loader:({params})=>
+                //     fetch(`https://crowduble-server.vercel.app/campaigns/${params.id}`)
+
+                loader: async ({ params }) => {
+                    try {
+                      const response = await fetch(`https://crowduble-server.vercel.app/campaigns/${params.id}`);
+                  
+                      if (!response.ok) {
+                        throw new Error(`Failed to fetch: ${response.statusText}`);
+                      }
+                  
+                      return response.json();
+                    } catch (error) {
+                      console.error("Error in loader:", error);
+                      throw new Error("Unable to fetch campaign details.");
+                    }
+                  }
+                  
          },
         
           

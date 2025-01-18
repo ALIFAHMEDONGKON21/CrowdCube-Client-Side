@@ -166,7 +166,7 @@ const UpdateCampaign = () => {
           <input
             type="text"
             name="userName"
-            value={user?.name}
+            value={user?.displayName}
             className="input input-bordered w-full bg-gray-200"
             readOnly
           />
@@ -176,7 +176,7 @@ const UpdateCampaign = () => {
         <div className="form-control">
           <button
             type="submit"
-            className="btn bg-orange-600 text-white w-full"
+            className="bg-gradient-to-r from-blue-900 via-indigo-900 to-gray-900 text-white p-2 rounded-lg w-full"
           >
             Update
           </button>
